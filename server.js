@@ -7,14 +7,14 @@ const collectibles = [
     { name: 'vintage 1970s yogurt SOLD AS-IS', price: 0.99 }
   ];
 
-  const shoes = [
+const shoes = [
     { name: "Birkenstocks", price: 50, type: "sandal" },
     { name: "Air Jordans", price: 500, type: "sneaker" },
     { name: "Air Mahomeses", price: 501, type: "sneaker" },
     { name: "Utility Boots", price: 20, type: "boot" },
     { name: "Velcro Sandals", price: 15, type: "sandal" },
     { name: "Jet Boots", price: 1000, type: "boot" },
-    { name: "Fifty-Inch Heels", price: 175, type: "heel" }
+    { name: "Fifty-Inch Heels", price: 175, type: "heel" }  
 ];
 
 
@@ -25,6 +25,8 @@ const collectibles = [
 app.get('/greetings/username', (req, res) => {
     res.send(`Hello there, ${username}`)
 })
+
+// Task: Set up a route to handle URLs following the pattern /roll/<number-parameter>.
 
 app.get('/roll/:number', (req, res) => {
     const number = req.params.number
@@ -40,6 +42,8 @@ app.get('/roll/:number', (req, res) => {
     }
 })
 
+// Task: Create a route for URLs like /collectibles/<index-parameter>.
+
 app.get('/collectibles/:index', (req, res) => {
     const index = req.params.index;
     const collectible = collectibles[index];
@@ -50,6 +54,8 @@ app.get('/collectibles/:index', (req, res) => {
         const response = `So, you want the ${collectible.name}? For ${collectible.price}, it can be yours!`;
         res.send(response);
 })
+
+// Task: Create a route /shoes that filters the list of shoes based on query parameters.
 
 app.get('/shoes', (req, res) => {
     let filteredShoes = shoes;
@@ -65,7 +71,7 @@ app.get('/shoes', (req, res) => {
     }
   
     if (req.query.type) {
-      const type = req.query.type.toLowerCase();
+      const type = req.query.type;
       filteredShoes = filteredShoes.filter(shoe => shoe.type === type);
     }
   
